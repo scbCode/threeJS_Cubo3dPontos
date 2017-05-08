@@ -15,12 +15,12 @@ if (contxt <= (txt.length-1)){
   
   textoautoArea = txt[contxt];
 
-if (document.getElementById("headerid").clientWidth>=414)
-  contmove += 6 * ((document.getElementById("headerid").clientWidth/document.getElementById("headerid").clientHeight)/1.77083);
+if (document.body.clientWidth>=414)
+  contmove += 6 * ((document.body.clientWidth/document.body.clientHeight)/1.77083);
 
 
-if (document.getElementById("headerid").clientWidth<414)
-  contmove += 9 * ((document.getElementById("headerid").clientWidth/document.getElementById("headerid").clientHeight)/1.77083);
+if (document.body.clientWidth<414)
+  contmove += 9 * ((document.body.clientWidth/document.body.clientHeight)/1.77083);
 
   console.log(contmove);
   document.getElementById("textoauto").innerHTML +=textoautoArea; 
