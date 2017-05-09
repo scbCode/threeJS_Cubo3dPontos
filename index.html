@@ -1,15 +1,106 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>TextoAutomatico</title>
-</head>
-<body>
-<div class="txtauto " id="textoauto" style="font-family:'Brandon Grotesque'; border-right: 2px solid;text-align: right;">
-   
- </div>
-	
-	    <script src="js/textoAuto/textauto.js"></script>
-	
-</body>
 
+<head>
+	<script src="three.js"></script>
+	<script src="OrbitControls.js"></script>
+	<title>testethreejs</title>
+</head>
+<body style="position: fixed;">
+<div class="" style="margin-left: 50%; color: black; position: fixed; text-align: center;"></div>
+
+
+
+<script type="text/javascript">
+
+var mundo = new THREE.Scene();
+
+var clock = new THREE.Clock();
+var delta = clock.getDelta();
+
+var WIDTH = window.innerWidth*0.9;
+var HEIGHT = window.innerHeight*0.9;
+
+var camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 10000);
+camera.position.set(0,40,0);
+mundo.add(camera)
+
+var controls = new THREE.OrbitControls( camera );
+
+var ambientLight = new THREE.AmbientLight( 0xFFFFFF );
+mundo.add( ambientLight );
+
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize(WIDTH,HEIGHT);
+document.body.appendChild(renderer.domElement);
+ renderer.setClearColor( 0x191919 , 1);
+
+
+var color2 = new THREE.Color( 0xffffff );
+var cont=0;
+
+
+		var geometry = new THREE.Geometry();
+
+
+//cubo solido
+		    for (var i = -20; i < 20; i+=0.4) {
+			for (var ii = -20; ii < 20; ii+=2) {
+			for (var iii = -20; iii < 20; iii+=0.4) {
+			var vat = new THREE.Vector3();
+			vat.x = (0 +iii);
+	    	vat.y = (0 + ii);
+	   	    vat.z = (0 + i);
+			geometry.vertices.push(vat);
+
+
+		 	}
+
+}
+
+}
+
+		var material = new THREE.PointsMaterial( { size: 0.1,color:color2, depthTest: false, opacity:0.3, sizeAttenuation: true, transparent: true } );
+
+				var mesh = new THREE.Points( geometry, material );
+				mesh.position.set(0,0,0);
+
+				mundo.add( mesh );
+
+
+document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+window.addEventListener( 'resize', onWindowResize, false );
+
+
+			function onDocumentMouseMove(event) {
+
+			}
+
+
+
+ function onWindowResize() {
+
+	 camera.aspect = window.innerWidth / window.innerHeight;
+	 camera.updateProjectionMatrix();
+
+	 renderer.setSize( window.innerWidth, window.innerHeight );
+
+ }
+
+function render(){
+
+//mesh2.rotation.x -=4000 * delta;
+mesh.rotation.y +=400 * delta;
+mesh.rotation.x +=400 * delta;
+renderer.render( mundo, camera );
+requestAnimationFrame(render);
+
+}
+render();
+
+</script>
+
+</body>
 </html>
+
